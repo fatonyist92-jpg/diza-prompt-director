@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <title>DIZA Imagine</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">D</div>
+          <div>DIZA Imagine</div>
+        </div>
+        <div class="muted">Director</div>
+      </header>
+
+      <main class="shell">
+        <section class="stage" id="stage">
+          <div class="empty" id="emptyState">
+            <div class="empty-title">What should we direct?</div>
+            <div class="empty-sub">Add a reference image and describe the scene.</div>
+          </div>
+          <img id="preview" alt="Reference" hidden />
+        </section>
+
+        <div class="status-row">
+          <span id="visionStatus">No reference</span>
+          <span id="directorStatus">Director idle</span>
+        </div>
+
+        <div class="error" id="errorBox" hidden></div>
+
+        <details class="debug" id="debugPanel">
+          <summary>
+            <span>Director debug</span>
+            <span class="tag">temporary</span>
+          </summary>
+          <div class="debug-body">
+            <div class="debug-section">
+              <div class="debug-title">SCENE FACTS</div>
+              <pre id="sceneFacts">—</pre>
+            </div>
+            <div class="debug-section">
+              <div class="debug-title">INFERRED GOAL</div>
+              <pre id="inferredGoal">—</pre>
+            </div>
+            <div class="debug-section">
+              <div class="debug-title">STORY BEATS</div>
+              <pre id="storyBeats">—</pre>
+            </div>
+            <div class="debug-section">
+              <div class="debug-title">SHOT LIST</div>
+              <pre id="shotList">—</pre>
+            </div>
+            <div class="debug-section">
+              <div class="debug-title">FINAL RENDER PROMPT</div>
+              <pre id="finalPrompt">—</pre>
+            </div>
+            <div class="debug-section">
+              <div class="debug-title">SHA-256</div>
+              <pre id="hash">—</pre>
+            </div>
+          </div>
+        </details>
+      </main>
+
+      <div class="composer-wrap">
+        <div class="composer">
+          <label class="plus" for="fileInput" aria-label="Add reference">+</label>
+          <input id="fileInput" type="file" accept="image/*" hidden />
+          <textarea id="prompt" rows="1" placeholder="Describe what should happen"></textarea>
+          <button id="send" class="send" aria-label="Generate">↑</button>
+        </div>
+        <div class="meta">
+          <span>Add reference with +</span>
+          <span>Web-first</span>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
