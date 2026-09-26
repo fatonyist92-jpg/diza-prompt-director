@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "diza-prompt-director",
+  "main": "./worker/index.js",
+  "compatibility_date": "2026-09-26",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "secrets": {
+    "required": [
+      "OPENROUTER_API_KEY",
+      "POLLINATIONS_API_KEY"
+    ]
+  }
+}
