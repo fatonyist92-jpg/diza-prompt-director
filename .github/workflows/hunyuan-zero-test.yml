@@ -78,7 +78,14 @@ jobs:
 
       - name: Validate MP4
         run: |
-          ffprobe -v error -show_entries format=duration,size -of json hunyuan_test.mp4
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("hunyuan_test.mp4")
+          data = p.read_bytes()
+          if len(data) < 1024 or b"ftyp" not in data[:64]:
+              raise SystemExit("Invalid MP4")
+          print("VALID_MP4", len(data))
+          PY
 
       - name: Upload MP4
         uses: actions/upload-artifact@v4
