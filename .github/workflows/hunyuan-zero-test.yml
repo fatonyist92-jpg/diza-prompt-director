@@ -39,8 +39,8 @@ jobs:
           result = client.predict(
               img,
               prompt,
-              5,
-              2,
+              121,
+              4,
               5.0,
               1,
               1.0,
@@ -90,7 +90,7 @@ jobs:
       - name: Upload MP4
         uses: actions/upload-artifact@v4
         with:
-          name: hunyuan-test-mp4
+          name: hunyuan-5s-mp4
           path: hunyuan_test.mp4
           if-no-files-found: error
           retention-days: 1
