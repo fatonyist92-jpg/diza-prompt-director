@@ -22,19 +22,24 @@ jobs:
           pip install -U gradio_client huggingface_hub
 
       - name: Generate Hunyuan I2V video
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
         run: |
           python - <<'PY'
           import os, shutil
           from gradio_client import Client, handle_file
 
-          client = Client("multimodalart/Hunyuan-Video-1-5")
+          token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN") or None
+          print("HF auth available:", bool(token))
+          client = Client("multimodalart/Hunyuan-Video-1-5", token=token)
           img = handle_file("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/guitar-man.png")
           prompt = "The man gently strums the red electric guitar while slightly moving his head, fixed camera, natural realistic motion."
 
           result = client.predict(
               img,
               prompt,
-              17,
+              5,
               2,
               5.0,
               1,
